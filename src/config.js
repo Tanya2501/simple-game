@@ -13,8 +13,8 @@ export default {
         fill: '#ffffff',
     },
     textStyle: {
-        font: '25px Robot',
-        fill: '#ffffff',
+        font: '15px Robot',
+        fill: '#000000',
     },
     textStylePlay: {
         font: '25px Robot',

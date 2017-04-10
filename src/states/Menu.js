@@ -11,31 +11,42 @@ export default class extends Phaser.State {
         const menu = this.add.sprite(this.world.centerX - 150, 50, 'menu');
         menu.scale.setTo(0.5, 0.5);
 
-        const button1 = this.add.button(this.world.centerX - 125, 150, 'playTab', this.playBtn, this, 2, 1, 0);
+        const button1 = this.add.button(this.world.centerX - 125, 150, 'playTab', () => {
+            music.mute = true;
+            this.state.start('Play');
+        }, this, 2, 1, 0);
         button1.scale.setTo(0.5, 0.5);
+        button1.onInputOver.add(this.over, this);
+        button1.onInputOut.add(this.out, this);
 
-        const button2 = this.add.button(this.world.centerX - 125, 215, 'scoreTab', this.scoreBtn, this, 2, 1, 0);
+        const button2 = this.add.button(this.world.centerX - 125, 215, 'scoreTab', () => {
+            music.mute = true;
+            this.state.start('Score');
+        }, this, 2, 1, 0);
         button2.scale.setTo(0.5, 0.5);
+        button2.onInputOver.add(this.over, this);
+        button2.onInputOut.add(this.out, this);
 
-        const button3 = this.add.button(this.world.centerX - 125, 280, 'helpTab', this.helpBtn, this, 2, 1, 0);
+        const button3 = this.add.button(this.world.centerX - 125, 280, 'helpTab', () => {
+            music.mute = true;
+            this.state.start('Help');
+        }, this, 2, 1, 0);
         button3.scale.setTo(0.5, 0.5);
+        button3.onInputOver.add(this.over, this);
+        button3.onInputOut.add(this.out, this);
 
         // playState.kills = 0;
         // playState.scores = 0;
         // playState.savemonkey = 0;
     }
-    playBtn() {
-        this.state.start('Play');
+
+    over(item) {
+        item.alpha = 0.5;
     }
 
-    helpBtn() {
-        this.state.start('Help');
+    out(item) {
+        item.alpha = 1;
     }
-
-    scoreBtn() {
-        this.state.start('Score');
-    }
-
 }
 
 

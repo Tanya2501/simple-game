@@ -79,6 +79,3 @@ playState = {
     game.physics.arcade.overlap(player, this.zombiesSecondRight, hitPlayer, null, this);
    },
 };
-
-
-    
