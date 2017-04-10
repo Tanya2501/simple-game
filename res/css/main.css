@@ -1,0 +1,27 @@
+@font-face {
+
+	font-family:"Robot";
+	src:url("../../assets/fonts/Classic Robot.ttf");
+}
+
+@font-face {
+
+	font-family:"Robot Bold";
+	src:url("../../assets/fonts/Classic Robot Bold.ttf");
+}
+
+#game {
+
+	height:600px;
+	width:800px;
+	margin:0 auto;
+}
+body, #title {
+
+	text-align:center;
+	font-family:"Robot";
+}
+
+canvas {
+	color: #ccc;
+}
