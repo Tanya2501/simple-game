@@ -5,8 +5,14 @@ import config from '../config';
 
 export default class extends Phaser.State {
     create() {
+        const music = this.add.audio('gameSoundTrack');
+        music.volume = 0.25;
+        music.play();
+
         this.physics.startSystem(Phaser.Physics.ARCADE);
-        this.add.sprite(0, 0, 'underwater');
+        const background = this.add.sprite(0, 0, 'underwater');
+        background.height = this.world.height;
+        background.width = this.world.width;
 
         this.kills = 0;
         this.scores = 0;
@@ -33,7 +39,7 @@ export default class extends Phaser.State {
         this.timer = this.time.events.loop(45000, enemies.addMoreMonkey, this);
 
 
-        this.player = this.add.sprite(400, /*this.world.height*/config.gameHeight, 'gorilla');
+        this.player = this.add.sprite(400, this.world.height, 'gorilla');
         this.physics.arcade.enable(this.player);
         this.player.body.bounce.y = 0.2;
         this.player.body.gravity.y = 600;
