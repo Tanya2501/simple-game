@@ -73,7 +73,7 @@ export default class extends Phaser.State {
         this.physics.arcade.overlap(this.lazers, this.zombiesSecond, hit.hitZombieSecond, null, this);
         this.physics.arcade.overlap(this.lazers, this.zombiesSecondLeft, hit.hitZombieSecond, null, this);
         this.physics.arcade.overlap(this.lazers, this.zombiesSecondRight, hit.hitZombieSecond, null, this);
-        this.physics.arcade.overlap(this.player, this.monkeys, countMonkey, null, this);
+        this.physics.arcade.overlap(this.player, this.monkeys, hit.countMonkey, null, this);
         this.physics.arcade.overlap(this.player, this.zombies, hit.hitPlayer, null, this);
         this.physics.arcade.overlap(this.player, this.zombiesLeft, hit.hitPlayer, null, this);
         this.physics.arcade.overlap(this.player, this.zombiesRight, hit.hitPlayer, null, this);
