@@ -1,7 +1,8 @@
 export default {
     gameWidth: 800,
     gameHeight: 600,
-    localStorageName: 'teamGreenGame',
+    localStorageHighScore: 'highScore',
+    localStorageLastScore: 'lastScore',
     inputKey: {
         left: 65,
         right: 68,

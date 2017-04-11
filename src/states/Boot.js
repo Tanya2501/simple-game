@@ -37,6 +37,7 @@ export default class extends Phaser.State {
         this.load.image('scoreTab', '../../assets/images/score-tab.png');
         this.load.image('helpTab', '../../assets/images/help-tab.png');
         this.load.image('menuTab', '../../assets/images/menu-tab.png');
+        this.load.image('purpleBall', '../../assets/images/purple_ball.png');
         this.load.audio('menuSoundTrack', ['../../assets/audio/menu.mp3']);
     }
 

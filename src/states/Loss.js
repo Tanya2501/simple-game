@@ -3,18 +3,29 @@ import config from '../config';
 
 export default class extends Phaser.State {
     create() {
-        this.playButton = this.add.button(300, 240, 'button', this.playBtn);
-        this.add.text(160, 90, 'Unfortunately you lost!', config.bigTextStyle);
-        this.add.text(120, 120, 'Click on monkey to restart.', config.bigTextStyle);
-        this.controlsButton = this.game.add.button(0, 0, 'ground', this.ctrlBtn);
-        this.add.text(5, 0, 'Help', config.textStyle);
+        const worldCenterX = this.world.centerX;
+        const highScore = localStorage.getItem(config.localStorageName);
+        const lastScore = localStorage.getItem(config.localStorageLastScore);
+
+        const background = this.add.sprite(this.world.centerX - 150, 50, 'menu');
+        background.scale.setTo(0.5, 0.5);
+
+        this.add.text(worldCenterX - 120, 150, `Best score: ${highScore}`, config.textStyle);
+        this.add.text(worldCenterX - 120, 190, `Last player score: ${lastScore}`, config.textStyle);
+
+        const controlsButton = this.game.add.button(worldCenterX - 120, 350, 'menuTab', () => {
+            this.state.start('Menu');
+        });
+        controlsButton.onInputOver.add(this.over, this);
+        controlsButton.onInputOut.add(this.out, this);
+        controlsButton.scale.setTo(0.5, 0.5);
     }
 
-    playBtn() {
-        this.state.start('Play');
+    over(item) {
+        item.alpha = 0.5;
     }
 
-    ctrlBtn() {
-        this.state.start('Help');
+    out(item) {
+        item.alpha = 1;
     }
 }

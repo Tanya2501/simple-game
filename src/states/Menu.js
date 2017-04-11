@@ -21,7 +21,7 @@ export default class extends Phaser.State {
 
         const button2 = this.add.button(this.world.centerX - 125, 215, 'scoreTab', () => {
             music.mute = true;
-            this.state.start('Score');
+            this.state.start('Loss');
         }, this, 2, 1, 0);
         button2.scale.setTo(0.5, 0.5);
         button2.onInputOver.add(this.over, this);
@@ -34,10 +34,6 @@ export default class extends Phaser.State {
         button3.scale.setTo(0.5, 0.5);
         button3.onInputOver.add(this.over, this);
         button3.onInputOut.add(this.out, this);
-
-        // playState.kills = 0;
-        // playState.scores = 0;
-        // playState.savemonkey = 0;
     }
 
     over(item) {

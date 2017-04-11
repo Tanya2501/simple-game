@@ -1,3 +1,4 @@
+import config from '../config';
 
 export default class {
     hitZombie(lazer, zombie) {
@@ -20,6 +21,12 @@ export default class {
 
     hitPlayer(player) {
         player.kill();
+        if (localStorage.getItem(config.localStorageName) === null) {
+            localStorage.setItem(config.localStorageName, this.scores);
+        } else if (this.scores > localStorage.getItem(config.localStorageName)) {
+            localStorage.setItem(config.localStorageName, this.scores);
+        }
+        localStorage.setItem(config.localStorageLastScore, this.scores);
         this.state.start('Loss');
     }
 }

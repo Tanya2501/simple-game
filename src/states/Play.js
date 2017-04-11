@@ -2,13 +2,15 @@ import Phaser from 'phaser';
 import Enemies from './Enemy';
 import Hit from './Hit';
 import config from '../config';
-import Input from './Input';
 
 export default class extends Phaser.State {
     create() {
         this.physics.startSystem(Phaser.Physics.ARCADE);
         this.add.sprite(0, 0, 'underwater');
 
+        this.kills = 0;
+        this.scores = 0;
+        this.savemonkey = 0;
         this.direct = 'IN FRONT';
 
         this.zombies = this.add.group();
@@ -50,13 +52,12 @@ export default class extends Phaser.State {
     }
 
     update() {
-        this.scoreText.setText(`Score: ${this.scores || 0}`);
-        this.killText.setText(`Kills: ${this.kills || 0}`);
-        this.monkeyText.setText(`Save monkey: ${this.savemonkey || 0}/5`);
+        this.scoreText.setText(`Score: ${this.scores}`);
+        this.killText.setText(`Kills: ${this.kills}`);
+        this.monkeyText.setText(`Save monkey: ${this.savemonkey}/5`);
         this.player.body.velocity.x = 0;
 
         const hit = new Hit();
-        // const input = new Input();
 
         this.keyPress();
 
@@ -74,49 +75,48 @@ export default class extends Phaser.State {
         this.physics.arcade.overlap(this.player, this.zombiesSecondLeft, hit.hitPlayer, null, this);
         this.physics.arcade.overlap(this.player, this.zombiesSecondRight, hit.hitPlayer, null, this);
     }
+
     keyPress() {
-        if (this.cursors.left.isDown) {
+        let lazer;
+        switch (true) {
+        case this.cursors.left.isDown:
             this.player.body.velocity.x = -150;
             this.player.animations.play('left');
             this.direct = 'LEFT';
-        } else if (this.cursors.right.isDown) {
+            lazer = this.lazers.create(this.player.body.x - 10, this.player.body.y + 40, 'purpleBall');
+            this.physics.enable(lazer, Phaser.Physics.ARCADE);
+            lazer.body.velocity.x = -300;
+            lazer.body.immovable = true;
+            lazer.body.allowGravity = false;
+            lazer.outOfBoundsKill = true;
+            break;
+
+        case this.cursors.right.isDown:
             this.player.body.velocity.x = 150;
             this.player.animations.play('right');
             this.direct = 'RIGHT';
-        } else if (this.cursors.up.isDown) {
+            lazer = this.lazers.create(this.player.body.x + 80, this.player.body.y + 40, 'purpleBall');
+            this.physics.enable(lazer, Phaser.Physics.ARCADE);
+            lazer.body.velocity.x = 300;
+            lazer.body.immovable = true;
+            lazer.body.allowGravity = false;
+            lazer.outOfBoundsKill = true;
+            break;
+
+        case this.cursors.up.isDown:
             this.player.body.velocity.y = -200;
             this.direct = 'IN FRONT';
             this.player.animations.play('stopUp');
-        } else {
-            this.player.animations.play('stopUp');
-        }
+            lazer = this.lazers.create(this.player.body.x + 15, this.player.body.y, 'purpleBall');
+            this.physics.enable(lazer, Phaser.Physics.ARCADE);
+            lazer.body.velocity.y = -300;
+            lazer.body.immovable = true;
+            lazer.body.allowGravity = false;
+            lazer.outOfBoundsKill = true;
+            break;
 
-        // for shoot
-        if (this.cursors.down.isDown) {
-            if (this.direct === 'RIGHT') {
-                this.player.animations.play('stopRight');
-                var lazer = this.lazers.create(this.player.body.x + 80, this.player.body.y + 40, 'turretLazer');
-                this.physics.enable(lazer, Phaser.Physics.ARCADE);
-                lazer.body.velocity.x = 140;
-                lazer.body.immovable = true;
-                lazer.body.allowGravity = false;
-                lazer.outOfBoundsKill = true;
-            } else if (this.direct === 'LEFT') {
-                player.animations.play('stopLeft');
-                var lazer = this.lazers.create(this.player.body.x - 10, this.player.body.y + 40, 'turretLazer');
-                this.physics.enable(lazer, Phaser.Physics.ARCADE);
-                lazer.body.velocity.x = -140;
-                lazer.body.immovable = true;
-                lazer.body.allowGravity = false;
-                lazer.outOfBoundsKill = true;
-            } else {
-                var lazer = this.lazers.create(this.player.body.x + 15, this.player.body.y, 'turretLazerUp');
-                this.physics.enable(lazer, Phaser.Physics.ARCADE);
-                lazer.body.velocity.y = -140;
-                lazer.body.immovable = true;
-                lazer.body.allowGravity = false;
-                lazer.outOfBoundsKill = true;
-            }
+        default:
+            this.player.animations.play('stopUp');
         }
     }
 }
