@@ -6,10 +6,10 @@ export default class {
         var velX;
 
         if (Math.random() > 1 / 2) {
-            startX = 600 - Math.random() * 300 - 5;
+            startX = 1200 - Math.random() * 600 - 5;
             velX = -30;
         } else {
-            startX = Math.random() * 300 + 5;
+            startX = Math.random() * 600 + 5;
             velX = 30;
         }
 
@@ -27,14 +27,14 @@ export default class {
         var velX;
 
         if (Math.random() > 1 / 2) {
-            startX = 600 - Math.random() * 10;
+            startX = 1200 - Math.random() * 10;
             velX = -20;
         } else {
-            startX = 700 - Math.random() * 10;
+            startX = 1200 - Math.random() * 10;
             velX = -20;
         }
 
-        this.zombie = this.zombiesRight.create(750, Math.random() * 600, 'zombie');
+        this.zombie = this.zombiesRight.create(1300, Math.random() * 600, 'zombie');
         this.physics.enable(this.zombie, Phaser.Physics.ARCADE);
         this.zombie.body.gravity.y = 5;
         this.zombie.animations.add('left', [9, 10, 11]);
@@ -48,10 +48,10 @@ export default class {
         var velX;
 
         if (Math.random() > 1 / 2) {
-            startX = 600 - Math.random() * 10;
+            startX = 1200 - Math.random() * 10;
             velX = 20;
         } else {
-            startX = 700 - Math.random() * 10;
+            startX = 1200 - Math.random() * 10;
             velX = 20;
         }
 
@@ -69,7 +69,7 @@ export default class {
         var velX;
 
         if (Math.random() > 1 / 2) {
-            startX = 600 - Math.random() * 10;
+            startX = 1200 - Math.random() * 10;
             velX = 20;
         } else {
             startX = 700 - Math.random() * 10;
@@ -90,14 +90,14 @@ export default class {
         var velX;
 
         if (Math.random() > 1 / 2) {
-            startX = 600 - Math.random() * 10;
+            startX = 1200 - Math.random() * 10;
             velX = -30;
         } else {
             startX = 700 - Math.random() * 10;
             velX = -30;
         }
 
-        this.zombie = this.zombiesSecondRight.create(750, Math.random() * 600, 'zombie');
+        this.zombie = this.zombiesSecondRight.create(1250, Math.random() * 600, 'zombie');
         this.physics.enable(this.zombie, Phaser.Physics.ARCADE);
         this.zombie.body.gravity.y = 5;
         this.zombie.animations.add('left', [12, 13, 14]);
@@ -111,7 +111,7 @@ export default class {
         var velX;
 
         if (Math.random() > 1 / 2) {
-            startX = 600 - Math.random() * 10;
+            startX = 1200 - Math.random() * 10;
             velX = 40;
         } else {
             startX = 700 - Math.random() * 10;
@@ -128,7 +128,7 @@ export default class {
     }
 
     addMoreMonkey() {
-        var startX = Math.random() * 700;
+        var startX = Math.random() * 1200;
         var startY = Math.random() * 300;
         this.monkey = this.monkeys.create(startX, startY, 'monkey');
         this.monkey.animations.add('monkey', [1, 0, 2]);
