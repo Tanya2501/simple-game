@@ -1,27 +1,70 @@
-@font-face {
-
-	font-family:"Robot";
-	src:url("../../assets/fonts/Classic Robot.ttf");
-}
-
-@font-face {
-
-	font-family:"Robot Bold";
-	src:url("../../assets/fonts/Classic Robot Bold.ttf");
-}
-
-#game {
-
-	height:600px;
-	width:800px;
-	margin:0 auto;
-}
-body, #title {
-
-	text-align:center;
-	font-family:"Robot";
-}
 
 canvas {
-	color: #ccc;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.about-game {
+  max-width: 100%;
+  text-align: center;
+}
+
+.hide, .hide + label ~ div {
+ display: none;
+}
+
+.hide +label + div {
+  display: none;
+}
+
+.hide + label {
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-size: 25px;
+}
+
+.hide + label:before {
+  background-color: #89939c;
+  content: "\002B";
+  display: block;
+  float: left;
+  border-radius: 50px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.hide:checked + label:before {
+  content: "\2212";
+}
+
+.hide:checked + label + div {
+	display: block;
+	background: #000;
+	color: #fff;
+}
+
+label {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.information {
+	font-size: 18px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-radius: 10px;
+}
+
+h1 {
+	color: #d9961f;
+}
+
+.information img {
+	display: block;
+	margin: 0 auto;
+	padding: 10px;
 }
