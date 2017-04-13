@@ -3,6 +3,8 @@ import 'pixi';
 import 'p2';
 import Phaser from 'phaser';
 
+import './scss/main.scss';
+
 // game modules
 import BootState from './states/Boot';
 import PreloadState from './states/Preload';
